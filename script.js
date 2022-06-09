@@ -2,7 +2,11 @@ const switchBtn = document.querySelector('.switch');
 const body = document.body;
 
 const theme = localStorage.getItem('theme');
+const input = document.getElementsByTagName('input');
 
+if (input.type == 'checkbox') {
+    input.checked = false;
+}
 
 if (theme) {
     body.classList.add(theme);
