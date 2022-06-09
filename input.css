@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --toggleStart: hsl(210, 78%, 56%);
+    --toggleEnd: hsl(146, 68%, 55%);
+    --lightThemeToggle: hsl(230, 22%, 74%);
+    --darkThemeToggle: hsl(228, 28%, 20%);
+    --darkThemeBg: hsl(230, 17%, 14%);
+    --darkThemeBgTop: hsl(232, 19%, 15%);
+    --darkThemeBgCard: hsl(228, 28%, 20%);
+    --darkThemeBgCardHover: hsl(229, 31%, 27%);
+    --darkThemeText: white;
+    --darkThemeTextLight: hsl(228, 34%, 66%);
+    --darkThemeBorder: hsl(228, 12%, 44%);
+    --lightThemeBgTop: hsl(225, 100%, 98%);
+    --lightThemeBgCard: hsl(227, 47%, 96%);
+    --lightThemeBgCardHover: hsl(240, 3%, 89%);
+    --lightThemeText: hsl(228, 12%, 44%);
+    --lightThemeTextDark: hsl(230, 17%, 14%);
+    --lightThemeBorder: 'hsl(232, 19%, 15%)';
+    --facebook: hsl(208, 92%, 53%);
+    --twitter: hsl(203, 89%, 53%);
+    --instagramStart: hsl(37, 97%, 70%);
+    --instagramEnd: hsl(329, 70%, 58%);
+    --youtube: hsl(348, 97%, 39%);
+}
+
+.light {
+    --bg: white;
+    --bg-top: var(--lightThemeBgTop);
+    --bg-card: var(--lightThemeBgCard);
+    --bg-card-hover: var(--lightThemeBgCardHover);
+    --text-primary: var(--lightThemeText);
+    --text-secondary: var(--lightThemeTextDark);
+    --border: var(--lightThemeBorder);
+    --toggle: var(--lightThemeToggle);
+}
+
+
+.dark {
+    --bg: var(--darkThemeBg);
+    --bg-top: var(--darkThemeBgTop);
+    --bg-card: var(--darkThemeBgCard);
+    --bg-card-hover: var(--darkThemeBgCardHover);
+    --text-primary: var(--darkThemeTextLight);
+    --text-secondary: var(--darkThemeText);
+    --border: var(--darkThemeBorder);
+    --toggle: var(--darkThemeToggle);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    transition: background-color 500ms ease-in-out, color 1000ms ease-in-out;
+    min-height: 120vh;
+}
+
+body::before {
+    content: "";
+    background-color: var(--bg-top);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 38vh;
+    z-index: -1;
+    transition: background-color 500ms ease-in-out;
+}
+
+.heading {
+    border-color: var(--border);
+}
+
+h1,
+.followers-number,
+.activity-count {
+    color: var(--text-secondary);
+}
+
+
+.followers,
+.subscribers {
+    letter-spacing: 0.3em;
+}
+
+.box--overview,
+.box {
+    background-color: var(--bg-card);
+    transition: background-color 500ms ease-in-out;
+    cursor: pointer;
+}
+
+.box--overview:hover,
+.box:hover {
+    background-color: var(--bg-card-hover);
+}
+
+.box--fb,
+.box--twitter,
+.box--ig,
+.box--yt {
+    position: relative;
+}
+
+.box--fb::before {
+    content: "";
+    width: 100%;
+    min-height: 0.8vh;
+    position: absolute;
+    top: 0;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    background-color: var(--facebook);
+}
+
+.box--twitter::before {
+    content: "";
+    width: 100%;
+    min-height: 0.8vh;
+    position: absolute;
+    top: 0;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    background-color: var(--twitter);
+}
+
+.box--yt::before {
+    content: "";
+    width: 100%;
+    min-height: 0.8vh;
+    position: absolute;
+    top: 0;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    background-color: var(--youtube);
+}
+
+.box--ig::before {
+    content: "";
+    width: 100%;
+    min-height: 0.8vh;
+    position: absolute;
+    top: 0;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    background-image: linear-gradient(to right, var(--instagramStart), var(--instagramEnd));
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+
+    input[type=checkbox],
+    input[type=radio] {
+        --active: linear-gradient(to right, var(--toggleStart), var(--toggleEnd));
+        --active-inner: #fff;
+        --border-hover: hsl(189, 99%, 59%);
+        --background: linear-gradient(to right, var(--toggleStart), var(--toggleEnd));
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 51px;
+        height: 24px;
+        outline: none;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        cursor: pointer;
+        background: var(--b, var(--background));
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    }
+
+    input[type=checkbox].switch {
+        border-radius: 15px;
+    }
+
+    input[type=checkbox]:after,
+    input[type=radio]:after {
+        content: "";
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+    }
+
+    input[type=checkbox]:checked,
+    input[type=radio]:checked {
+        --d-o: .3s;
+        --d-t: .6s;
+        --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+    }
+
+    input[type=checkbox]:disabled,
+    input[type=radio]:disabled {
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: 0.9;
+    }
+
+    input[type=checkbox]:disabled:checked,
+    input[type=radio]:disabled:checked {
+        --b: var(--disabled-inner);
+        --bc: var(--border);
+    }
+
+    input[type=checkbox]:disabled+label,
+    input[type=radio]:disabled+label {
+        cursor: not-allowed;
+    }
+
+    input[type=checkbox]:focus,
+    input[type=radio]:focus {
+        box-shadow: 0 0 0 var(--focus);
+    }
+
+
+    input[type=checkbox].switch:after {
+        left: 2px;
+        top: 2px;
+        border-radius: 50%;
+        width: 20px;
+        aspect-ratio: 1/1;
+        background: var(--ab, var(--toggle));
+        transform: translateX(var(--x, 0));
+    }
+
+    input[type=checkbox].switch:checked {
+        --ab: var(--active-inner);
+        --x: 26px;
+    }
+
+    input[type=checkbox].switch:disabled:not(:checked):after {
+        opacity: 0.6;
+    }
+}
