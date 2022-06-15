@@ -9,6 +9,7 @@ if (input.type == 'checkbox') {
 }
 
 if (theme) {
+    body.classList.remove('dark');
     body.classList.add(theme);
 }
 
