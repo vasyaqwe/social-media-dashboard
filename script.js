@@ -4,13 +4,17 @@ const body = document.body;
 const theme = localStorage.getItem('theme');
 const input = document.getElementsByTagName('input');
 
-if (input.type == 'checkbox') {
-    input.checked = false;
-}
 
+
+switchBtn.addEventListener('change', () => {
+    console.log(switchBtn.checked)
+})
 if (theme) {
     body.classList.remove('dark');
     body.classList.add(theme);
+}
+if (theme === 'light') {
+    switchBtn.checked = true;
 }
 
 switchBtn.addEventListener('change', () => {
